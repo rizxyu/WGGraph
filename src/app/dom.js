@@ -1,0 +1,47 @@
+(function () {
+    'use strict';
+    const AG = window.AG;
+    AG.dom = {
+        canvas: document.getElementById('graph-canvas'),
+        canvasContainer: document.getElementById('canvas-container'),
+        canvasCoords: document.getElementById('canvas-coords'),
+        mirrorButton: document.getElementById('btn-mirror-graph'),
+        settingsButton: document.getElementById('btn-open-settings'),
+        presetGrid: document.getElementById('presets-grid'),
+        presetEngineLabel: document.getElementById('preset-engine-label'),
+        savePresetButton: document.getElementById('btn-save-preset'),
+        closePresetDialogButton: document.getElementById('btn-close-preset-dialog'),
+        status: document.getElementById('status-msg'),
+        fps: document.getElementById('status-fps'),
+        customAnchorCount: document.getElementById('custom-anchor-count'),
+        applyButton: document.getElementById('btn-apply'),
+        bakeButton: document.getElementById('btn-bake'),
+        clearButton: document.getElementById('btn-clear'),
+        resetButton: document.getElementById('btn-reset-graph'),
+        syncButton: document.getElementById('btn-sync'),
+        loopEnabled: document.getElementById('loop-enabled'),
+        loopInfinite: document.getElementById('loop-infinite'),
+        loopInCount: document.getElementById('loop-in-count'),
+        loopOutCount: document.getElementById('loop-out-count'),
+        dialogBackdrop: document.getElementById('preset-dialog-backdrop'),
+        dialogTitle: document.getElementById('preset-dialog-title'),
+        dialogDescription: document.getElementById('preset-dialog-description'),
+        dialogInputWrap: document.getElementById('preset-dialog-input-wrap'),
+        dialogInput: document.getElementById('preset-name-input'),
+        dialogMessage: document.getElementById('preset-dialog-message'),
+        dialogConflict: document.getElementById('preset-dialog-conflict'),
+        dialogConflictTitle: document.getElementById('preset-dialog-conflict-title'),
+        dialogConflictText: document.getElementById('preset-dialog-conflict-text'),
+        dialogConflictActions: document.getElementById('preset-dialog-conflict-actions'),
+        dialogCancel: document.getElementById('btn-cancel-preset-dialog'),
+        dialogConfirm: document.getElementById('btn-confirm-preset-dialog'),
+        settingsBackdrop: document.getElementById('settings-dialog-backdrop'),
+        settingsCloseButton: document.getElementById('btn-close-settings-dialog'),
+        settingsDoneButton: document.getElementById('btn-close-settings-footer'),
+        settingsEnableMirror: document.getElementById('setting-enable-mirror'),
+        settingsEnableGhost: document.getElementById('setting-enable-ghost'),
+        settingsThemeGrid: document.getElementById('settings-theme-grid'),
+        settingsAccentGrid: document.getElementById('settings-accent-grid')
+    };
+    AG.ctx = AG.dom.canvas.getContext('2d');
+})();

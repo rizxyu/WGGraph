@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ArkaGraph 2.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div id="header">
+    <div id="header-secure-wrap" style="width: 100%;"></div>
+</div>
+
+<div id="engine-tabs">
+    <div class="eng-tab active" data-engine="bezier">BÉZIER</div>
+    <div class="eng-tab" data-engine="elastic">ELASTIC</div>
+    <div class="eng-tab" data-engine="bounce">BOUNCE</div>
+    <div class="eng-tab" data-engine="steps">STEPS</div>
+    <div class="eng-tab" data-engine="wave">WAVE</div>
+    <div class="eng-tab" data-engine="custom">CUSTOM</div>
+</div>
+
+<div id="canvas-wrap">
+    <div id="canvas-header">
+        <span class="section-label">VALUE_GRAPH</span>
+        <div class="canvas-tools">
+            <button id="btn-sync">SYNC AE</button>
+            <button id="btn-mirror-graph" class="icon-action-btn" type="button" title="Mirror graph" aria-label="Mirror graph"></button>
+            <button id="btn-open-settings" class="icon-action-btn" type="button" title="Settings" aria-label="Settings"></button>
+            <span id="canvas-coords" class="coords-readout">T:0.000 V:0.000</span>
+        </div>
+    </div>
+    <div id="canvas-container">
+        <canvas id="graph-canvas"></canvas>
+    </div>
+</div>
+
+<div id="params-section">
+    <div class="engine-params active" id="params-bezier">
+        <div class="param-row" style="margin-bottom: 10px;">
+            <span class="param-label">GRAPH VIEW</span>
+            <div class="seg-ctrl" id="bezier-mode">
+                <div class="seg-btn active" data-bmode="value">VALUE</div>
+                <div class="seg-btn" data-bmode="speed">SPEED</div>
+            </div>
+        </div>
+        <div class="param-row">
+            <span class="param-label">CTRL P1.X</span>
+            <input type="range" class="param-slider" id="bz-x1" min="0" max="1" step="0.01" value="0.42"/>
+            <span class="param-val" id="bz-x1-val">0.42</span>
+        </div>
+        <div class="param-row">
+            <span class="param-label">CTRL P1.Y</span>
+            <input type="range" class="param-slider" id="bz-y1" min="-0.5" max="1.5" step="0.01" value="0.00"/>
+            <span class="param-val" id="bz-y1-val">0.00</span>
+        </div>
+        <div class="param-row">
+            <span class="param-label">CTRL P2.X</span>
+            <input type="range" class="param-slider" id="bz-x2" min="0" max="1" step="0.01" value="0.58"/>
+            <span class="param-val" id="bz-x2-val">0.58</span>
+        </div>
+        <div class="param-row">
+            <span class="param-label">CTRL P2.Y</span>
+            <input type="range" class="param-slider" id="bz-y2" min="-0.5" max="1.5" step="0.01" value="1.00"/>
+            <span class="param-val" id="bz-y2-val">1.00</span>
+        </div>
+    </div>
+
+    <div class="engine-params" id="params-elastic">
+        <div class="param-row">
+            <span class="param-label">AMPLITUDE</span>
+            <input type="range" class="param-slider" id="el-amp" min="1.0" max="3.0" step="0.05" value="1.2"/>
+            <span class="param-val" id="el-amp-val">1.20</span>
+        </div>
+        <div class="param-row">
+            <span class="param-label">FREQUENCY</span>
+            <input type="range" class="param-slider" id="el-freq" min="1" max="10" step="0.1" value="4.0"/>
+            <span class="param-val" id="el-freq-val">4.0</span>
+        </div>
+        <div class="param-row">
+            <span class="param-label">DECAY</span>
+            <input type="range" class="param-slider" id="el-decay" min="1" max="15" step="0.1" value="6.0"/>
+            <span class="param-val" id="el-decay-val">6.0</span>
+        </div>
+    </div>
+
+    <div class="engine-params" id="params-bounce">
+        <div class="param-row">
+            <span class="param-label">BOUNCES</span>
+            <input type="range" class="param-slider" id="bn-count" min="1" max="8" step="1" value="3"/>
+            <span class="param-val" id="bn-count-val">3</span>
+        </div>
+        <div class="param-row">
+            <span class="param-label">RESTITUTION</span>
+            <input type="range" class="param-slider" id="bn-rest" min="0.1" max="0.95" step="0.01" value="0.5"/>
+            <span class="param-val" id="bn-rest-val">0.50</span>
+        </div>
+    </div>
+
+    <div class="engine-params" id="params-steps">
+        <div class="param-row">
+            <span class="param-label">COUNT</span>
+            <input type="range" class="param-slider" id="st-count" min="1" max="32" step="1" value="8"/>
+            <span class="param-val" id="st-count-val">8</span>
+        </div>
+    </div>
+
+    <div class="engine-params" id="params-wave">
+        <div class="param-row">
+            <span class="param-label">AMPLITUDE</span>
+            <input type="range" class="param-slider" id="wv-amp" min="0.1" max="3.0" step="0.05" value="1.0"/>
+            <span class="param-val" id="wv-amp-val">1.00</span>
+        </div>
+        <div class="param-row">
+            <span class="param-label">FREQUENCY</span>
+            <input type="range" class="param-slider" id="wv-freq" min="0.5" max="20" step="0.1" value="3.0"/>
+            <span class="param-val" id="wv-freq-val">3.0</span>
+        </div>
+        <div class="param-row">
+            <span class="param-label">PHASE</span>
+            <input type="range" class="param-slider" id="wv-phase" min="0" max="1" step="0.01" value="0.0"/>
+            <span class="param-val" id="wv-phase-val">0.00</span>
+        </div>
+    </div>
+
+    <div class="engine-params" id="params-custom">
+        <div class="param-row custom-anchor-row">
+            <span class="param-label">NODES</span>
+            <span class="param-val custom-anchor-count" id="custom-anchor-count">5</span>
+        </div>
+    </div>
+</div>
+
+<div id="bake-row">
+    <span class="param-label">BAKE KEYS</span>
+    <input type="range" class="param-slider" id="bake-steps" min="6" max="120" step="1" value="30"/>
+    <span class="param-val" id="bake-steps-val">30</span>
+</div>
+
+<div id="loop-row">
+    <label class="looping-toggle" for="loop-enabled">
+        <input id="loop-enabled" type="checkbox"/>
+        <span class="settings-toggle-ui"></span>
+        <span class="looping-copy">
+            <span class="looping-label">Looping</span>
+            <span class="looping-text">Apply cycle before and after the selected key range.</span>
+        </span>
+    </label>
+    
+    <div class="looping-counts" style="display: flex; flex-direction: row; align-items: center; gap: 8px; width: 100%; flex-wrap: nowrap;">
+        
+        <label class="loop-infinite-wrapper" title="Infinite Loop" style="position: relative; width: 34px; height: 34px; flex-shrink: 0; cursor: pointer;">
+            <input id="loop-infinite" type="checkbox" style="position: absolute; opacity: 0; width: 0; height: 0;"/>
+            <div id="loop-infinite-ui" style="display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; background: transparent; border: 1px solid #333; border-radius: 6px; color: #888; transition: all 0.2s ease;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 2l4 4-4 4"/>
+                    <path d="M3 11v-1a4 4 0 0 1 4-4h14"/>
+                    <path d="M7 22l-4-4 4-4"/>
+                    <path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+                </svg>
+            </div>
+        </label>
+
+        <label class="looping-count" style="flex: 1 1 0; min-width: 0; margin: 0;">
+            <span class="looping-count-name">IN</span>
+            <input id="loop-in-count" class="looping-input" type="number" min="0" max="12" step="1" value="0" style="width: 100%; min-width: 0;"/>
+        </label>
+
+        <label class="looping-count" style="flex: 1 1 0; min-width: 0; margin: 0;">
+            <span class="looping-count-name">OUT</span>
+            <input id="loop-out-count" class="looping-input" type="number" min="0" max="12" step="1" value="0" style="width: 100%; min-width: 0;"/>
+        </label>
+    </div>
+</div>
+
+<div id="actions">
+    <button class="action-btn" id="btn-apply">APPLY</button>
+    <button class="action-btn" id="btn-bake">BAKE</button>
+    <div class="bottom-actions">
+        <button class="action-btn" id="btn-clear">CLEAR EXPR</button>
+        <button class="action-btn" id="btn-reset-graph">RESET GRAPH</button>
+    </div>
+</div>
+
+<div id="presets-section">
+    <div id="presets-header">
+        <span class="section-label">PRESET_LIBRARY</span>
+        <div class="preset-toolbar">
+            <span class="section-label" id="preset-engine-label">MODULE: BÉZIER</span>
+            <button id="btn-save-preset" class="icon-action-btn" type="button" title="Save preset" aria-label="Save preset"></button>
+        </div>
+    </div>
+    <div id="presets-grid"></div>
+</div>
+
+<div id="statusbar">
+    <span id="status-msg">READY</span>
+    <span id="status-fps">— FPS</span>
+</div>
+
+<div id="preset-dialog-backdrop" class="dialog-backdrop hidden">
+    <div id="preset-dialog" class="dialog-panel" role="dialog" aria-modal="true" aria-labelledby="preset-dialog-title">
+        <div class="dialog-header">
+            <div>
+                <div id="preset-dialog-title" class="dialog-title">Save Preset</div>
+                <div id="preset-dialog-description" class="dialog-description">Store the current graph in your library.</div>
+            </div>
+            <button id="btn-close-preset-dialog" class="icon-action-btn dialog-close-btn" type="button" aria-label="Close dialog"></button>
+        </div>
+        <div id="preset-dialog-input-wrap" class="dialog-input-wrap">
+            <input id="preset-name-input" class="dialog-input" type="text" maxlength="36" placeholder="Preset name"/>
+        </div>
+        <div id="preset-dialog-message" class="dialog-message"></div>
+        <div id="preset-dialog-conflict" class="dialog-conflict hidden">
+            <div id="preset-dialog-conflict-title" class="dialog-conflict-title">Name conflict</div>
+            <div id="preset-dialog-conflict-text" class="dialog-conflict-text"></div>
+            <div id="preset-dialog-conflict-actions" class="dialog-conflict-actions"></div>
+        </div>
+        <div class="dialog-actions">
+            <button id="btn-cancel-preset-dialog" class="dialog-btn ghost" type="button">Cancel</button>
+            <button id="btn-confirm-preset-dialog" class="dialog-btn accent" type="button">Save</button>
+        </div>
+    </div>
+</div>
+
+<div id="settings-dialog-backdrop" class="dialog-backdrop hidden">
+    <div id="settings-dialog" class="dialog-panel settings-panel" role="dialog" aria-modal="true" aria-labelledby="settings-dialog-title">
+        <div class="dialog-header">
+            <div>
+                <div id="settings-dialog-title" class="dialog-title">Settings</div>
+                <div class="dialog-description">Graph tools, reference behavior, and panel appearance.</div>
+            </div>
+            <button id="btn-close-settings-dialog" class="icon-action-btn dialog-close-btn" type="button" aria-label="Close settings"></button>
+        </div>
+        <div class="settings-section">
+            <div class="settings-section-title">Tools</div>
+            <label class="settings-toggle">
+                <input id="setting-enable-mirror" type="checkbox"/>
+                <span class="settings-toggle-ui"></span>
+                <span class="settings-toggle-copy">
+                    <span class="settings-toggle-label">Mirror Action</span>
+                    <span class="settings-toggle-text">Show the mirror/flip graph tool in the main panel.</span>
+                </span>
+            </label>
+            <label class="settings-toggle">
+                <input id="setting-enable-ghost" type="checkbox"/>
+                <span class="settings-toggle-ui"></span>
+                <span class="settings-toggle-copy">
+                    <span class="settings-toggle-label">Reference Ghost</span>
+                    <span class="settings-toggle-text">Display the previous curve as a ghost overlay while editing.</span>
+                </span>
+            </label>
+        </div>
+        <div class="settings-section">
+            <div class="settings-section-title">Theme</div>
+            <div id="settings-theme-grid" class="settings-theme-grid"></div>
+        </div>
+        <div class="settings-section">
+            <div class="settings-section-title">Accent</div>
+            <div id="settings-accent-grid" class="settings-accent-grid"></div>
+        </div>
+        <div class="dialog-actions">
+            <button id="btn-close-settings-footer" class="dialog-btn accent" type="button">Done</button>
+        </div>
+    </div>
+</div>
+
+<script src="CSInterface.js"></script>
+<script src="engines/core.js"></script>
+<script src="engines/bezier.js"></script>
+<script src="engines/elastic.js"></script>
+<script src="engines/bounce.js"></script>
+<script src="engines/steps.js"></script>
+<script src="engines/wave.js"></script>
+<script src="engines/custom.js"></script>
+<script src="engines/presets.js"></script>
+<script src="engines/index.js"></script>
+<script src="expressions/looping.js"></script>
+<script src="presets/storage.js"></script>
+<script src="presets/dialog.js"></script>
+<script src="presets/manager.js"></script>
+<script src="settings/storage.js"></script>
+<script src="settings/panel.js"></script>
+
+<script src="app/config.js"></script>
+<script src="app/dom.js"></script>
+<script src="app/state.js"></script>
+<script src="app/security.js"></script>
+<script src="utils/utils.js"></script>
+<script src="canvas/transform.js"></script>
+<script src="canvas/samples.js"></script>
+<script src="ui/status.js"></script>
+<script src="ui/sliders.js"></script>
+<script src="ui/loop.js"></script>
+<script src="graph/engine.js"></script>
+<script src="graph/drag.js"></script>
+<script src="graph/custom.js"></script>
+<script src="graph/mirror.js"></script>
+<script src="canvas/renderer.js"></script>
+<script src="canvas/hitTest.js"></script>
+<script src="canvas/events.js"></script>
+<script src="host/bridge.js"></script>
+<script src="features/settings.js"></script>
+<script src="features/preset.js"></script>
+<script src="ui/events.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
