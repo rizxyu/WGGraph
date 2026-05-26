@@ -190,10 +190,40 @@ body {
     overflow: hidden;
 }
 
+#graph-bg-layer,
+#graph-bg-gradient {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#graph-bg-layer {
+    z-index: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: translateZ(0);
+}
+
+#graph-bg-gradient {
+    z-index: 1;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.42) 52%, rgba(0, 0, 0, 0.76) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.58) 100%);
+}
+
+#graph-bg-layer.active,
+#graph-bg-gradient.active {
+    opacity: 1;
+}
+
 #graph-canvas {
     display: block;
     width: 100%;
     height: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 #params-section {
@@ -991,4 +1021,146 @@ body {
 .settings-accent-swatch.active {
     border-color: var(--text0);
     box-shadow: 0 0 0 1px var(--bg0), 0 0 0 2px var(--text0);
+}
+
+.settings-bg-row {
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr);
+    gap: 10px;
+    align-items: stretch;
+}
+
+.settings-bg-preview {
+    width: 74px;
+    min-height: 74px;
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.04) 25%, transparent 25%) 0 0 / 12px 12px,
+        linear-gradient(135deg, transparent 75%, rgba(255, 255, 255, 0.04) 75%) 0 0 / 12px 12px,
+        var(--bg2);
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.settings-bg-preview.active {
+    border-color: rgba(0, 196, 167, 0.35);
+}
+
+.settings-bg-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    align-content: flex-start;
+}
+
+.settings-bg-btn {
+    min-width: 72px;
+}
+
+.settings-bg-btn:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.settings-bg-message {
+    flex-basis: 100%;
+    min-height: 15px;
+    font-size: 8px;
+    line-height: 1.45;
+    color: var(--text2);
+    overflow-wrap: anywhere;
+}
+
+.settings-bg-message.ok {
+    color: var(--accent);
+}
+
+.settings-bg-message.warn {
+    color: var(--yellow);
+}
+
+.settings-bg-message.err {
+    color: var(--red);
+}
+
+.settings-bg-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.settings-bg-thumb {
+    position: relative;
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--border2);
+    border-radius: 5px;
+    background-color: var(--bg2);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.settings-bg-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.settings-bg-thumb.active {
+    border-color: var(--accent);
+    box-shadow: inset 0 0 0 1px rgba(0, 196, 167, 0.35);
+}
+
+.settings-bg-thumb.default {
+    border-color: rgba(245, 200, 66, 0.42);
+}
+
+.settings-bg-thumb.default::before {
+    content: "DEFAULT";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    z-index: 1;
+    padding: 1px 3px;
+    border-radius: 3px;
+    background: rgba(245, 200, 66, 0.9);
+    color: #090909;
+    font-size: 5px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.settings-bg-thumb.default.active {
+    border-color: var(--yellow);
+    box-shadow: inset 0 0 0 1px rgba(245, 200, 66, 0.45);
+}
+
+.settings-bg-thumb.default .settings-bg-type {
+    background: rgba(0, 0, 0, 0.78);
+    color: var(--yellow);
+}
+
+.settings-bg-btn[disabled] {
+    color: var(--text2);
+}
+
+.settings-bg-type {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    z-index: 1;
+    padding: 1px 3px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.72);
+    color: var(--text0);
+    font-size: 6px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
 }

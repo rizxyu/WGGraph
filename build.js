@@ -38,7 +38,7 @@ const obfuscated = Obfuscator.obfuscate(combinedJs, {
     stringArray: true,
     stringArrayEncoding: ['base64'],
     disableConsoleOutput: true,
-    selfDefending: false // Aman untuk After Effects
+    selfDefending: false
 }).getObfuscatedCode();
 
 fs.writeFileSync(path.join(distDir, 'bundle.js'), obfuscated);

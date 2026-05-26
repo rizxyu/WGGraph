@@ -35,6 +35,8 @@
         </div>
     </div>
     <div id="canvas-container">
+        <div id="graph-bg-layer" aria-hidden="true"></div>
+        <div id="graph-bg-gradient" aria-hidden="true"></div>
         <canvas id="graph-canvas"></canvas>
     </div>
 </div>
@@ -263,6 +265,27 @@
             <div class="settings-section-title">Accent</div>
             <div id="settings-accent-grid" class="settings-accent-grid"></div>
         </div>
+        <div class="settings-section">
+            <div class="settings-section-title">Graph Background</div>
+            <label class="settings-toggle">
+                <input id="setting-bg-enabled" type="checkbox"/>
+                <span class="settings-toggle-ui"></span>
+                <span class="settings-toggle-copy">
+                    <span class="settings-toggle-label">Custom Background</span>
+                    <span class="settings-toggle-text">Use an image or GIF behind the graph.</span>
+                </span>
+            </label>
+            <div class="settings-bg-row">
+                <div id="settings-bg-preview" class="settings-bg-preview"></div>
+                <div class="settings-bg-actions">
+                    <input id="setting-bg-input" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden/>
+                    <button id="btn-choose-bg" class="dialog-btn ghost settings-bg-btn" type="button">Add</button>
+                    <button id="btn-remove-bg" class="dialog-btn ghost settings-bg-btn" type="button">Remove</button>
+                    <div id="settings-bg-message" class="settings-bg-message"></div>
+                </div>
+            </div>
+            <div id="settings-bg-gallery" class="settings-bg-gallery"></div>
+        </div>
         <div class="dialog-actions">
             <button id="btn-close-settings-footer" class="dialog-btn accent" type="button">Done</button>
         </div>
@@ -283,6 +306,7 @@
 <script src="presets/storage.js"></script>
 <script src="presets/dialog.js"></script>
 <script src="presets/manager.js"></script>
+<script src="settings/background-links.js"></script>
 <script src="settings/storage.js"></script>
 <script src="settings/panel.js"></script>
 

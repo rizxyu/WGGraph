@@ -4,6 +4,8 @@
     AG.dom = {
         canvas: document.getElementById('graph-canvas'),
         canvasContainer: document.getElementById('canvas-container'),
+        canvasBackground: document.getElementById('graph-bg-layer'),
+        canvasBackgroundGradient: document.getElementById('graph-bg-gradient'),
         canvasCoords: document.getElementById('canvas-coords'),
         mirrorButton: document.getElementById('btn-mirror-graph'),
         settingsButton: document.getElementById('btn-open-settings'),
@@ -40,6 +42,13 @@
         settingsDoneButton: document.getElementById('btn-close-settings-footer'),
         settingsEnableMirror: document.getElementById('setting-enable-mirror'),
         settingsEnableGhost: document.getElementById('setting-enable-ghost'),
+        settingsBackgroundEnabled: document.getElementById('setting-bg-enabled'),
+        settingsBackgroundInput: document.getElementById('setting-bg-input'),
+        settingsBackgroundChoose: document.getElementById('btn-choose-bg'),
+        settingsBackgroundRemove: document.getElementById('btn-remove-bg'),
+        settingsBackgroundPreview: document.getElementById('settings-bg-preview'),
+        settingsBackgroundGallery: document.getElementById('settings-bg-gallery'),
+        settingsBackgroundMessage: document.getElementById('settings-bg-message'),
         settingsThemeGrid: document.getElementById('settings-theme-grid'),
         settingsAccentGrid: document.getElementById('settings-accent-grid')
     };

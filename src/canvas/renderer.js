@@ -22,7 +22,8 @@
     function drawGrid(padding, width, height) {
         const ctx = AG.ctx;
         const isSpeed = AG.state.engine === 'bezier' && AG.state.params.bezier.mode === 'speed';
-        ctx.strokeStyle = AG.cssVar('--grid-line', '#1e1e1e');
+        const hasBackground = AG.hasGraphBackground && AG.hasGraphBackground();
+        ctx.strokeStyle = hasBackground ? 'rgba(255, 255, 255, 0.16)' : AG.cssVar('--grid-line', '#1e1e1e');
         ctx.lineWidth = 1;
         for (let i = 0; i <= 4; i++) {
             const x = padding + i * (width - padding * 2) / 4;
@@ -31,7 +32,7 @@
             ctx.beginPath(); ctx.moveTo(padding, y); ctx.lineTo(width - padding, y); ctx.stroke();
         }
         if (!isSpeed) {
-            ctx.strokeStyle = AG.cssVar('--grid-diagonal', '#222222');
+            ctx.strokeStyle = hasBackground ? 'rgba(255, 255, 255, 0.12)' : AG.cssVar('--grid-diagonal', '#222222');
             ctx.setLineDash([4 * AG.dpr(), 4 * AG.dpr()]);
             ctx.beginPath();
             ctx.moveTo(AG.toCanvas(0, 0).x, AG.toCanvas(0, 0).y);
@@ -39,7 +40,7 @@
             ctx.stroke();
             ctx.setLineDash([]);
         }
-        ctx.strokeStyle = AG.cssVar('--grid-border', '#252525');
+        ctx.strokeStyle = hasBackground ? 'rgba(255, 255, 255, 0.22)' : AG.cssVar('--grid-border', '#252525');
         ctx.strokeRect(padding - 0.5, padding - 0.5, width - padding * 2 + 1, height - padding * 2 + 1);
         if (isSpeed) {
             const zp = AG.toCanvas(0, 0);
@@ -173,8 +174,10 @@
         const samples = AG.getSamples(80);
         const refSamples = AG.state.referenceCurve ? AG.getSnapshotSamples(AG.state.referenceCurve, 80) : [];
         ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = AG.cssVar('--canvas-bg', '#111111');
-        ctx.fillRect(0, 0, w, h);
+        if (!AG.hasGraphBackground || !AG.hasGraphBackground()) {
+            ctx.fillStyle = AG.cssVar('--canvas-bg', '#111111');
+            ctx.fillRect(0, 0, w, h);
+        }
         drawGrid(padding, w, h);
         if (AG.isGhostEnabled() && refSamples.length) {
             ctx.save();
