@@ -1,7 +1,7 @@
 (function (root) {
     'use strict';
 
-    const storage = root.ArkaGraphPresetStorage;
+    const storage = root.WGGraphPresetStorage;
 
     function clone(value) {
         return JSON.parse(JSON.stringify(value));
@@ -11,7 +11,7 @@
         return prefix + '-' + Date.now() + '-' + Math.floor(Math.random() * 10000);
     }
 
-    root.ArkaGraphPresetManager = function createPresetManager(options) {
+    root.WGGraphPresetManager = function createPresetManager(options) {
         const engine = options.engine;
         const dialog = options.dialog;
         const builtInPresets = engine.PRESETS.map(function (preset, index) {

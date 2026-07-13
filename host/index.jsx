@@ -1,10 +1,10 @@
-function arkaGraphApplyNativeEase(x1, y1, x2, y2) {
+function wggraphApplyNativeEase(x1, y1, x2, y2) {
     try {
         var comp = app.project.activeItem;
         if (!comp) return "ERROR: No active composition.";
         var props = getSelectedKeyframeProperties(comp);
         if (props.length === 0) return "ERROR: No keys selected.";
-        app.beginUndoGroup("ArkaGraph: Apply Ease");
+        app.beginUndoGroup("WGGraph: Apply Ease");
         var infOut = Math.max(0.1, Math.min(100, x1 * 100));
         var infIn  = Math.max(0.1, Math.min(100, (1 - x2) * 100));
         var eff_x1 = Math.max(0.001, x1);
@@ -61,7 +61,7 @@ function arkaGraphApplyNativeEase(x1, y1, x2, y2) {
     } catch(e) { return "ERROR: " + e.toString(); }
 }
 
-function arkaGraphSyncFromAE() {
+function wggraphSyncFromAE() {
     try {
         var comp = app.project.activeItem;
         if (!comp) return null;
@@ -113,13 +113,13 @@ function arkaGraphSyncFromAE() {
     } catch(e) { return null; }
 }
 
-function arkaGraphApplyExpression(expressionCode) {
+function wggraphApplyExpression(expressionCode) {
     try {
         var comp = app.project.activeItem;
         if (!(comp instanceof CompItem)) return "ERROR: No active composition.";
         var selectedProps = getSelectedKeyframeProperties(comp);
         if (selectedProps.length === 0) return "ERROR: No properties selected.";
-        app.beginUndoGroup("ArkaGraph: Apply Expression");
+        app.beginUndoGroup("WGGraph: Apply Expression");
         for (var p = 0; p < selectedProps.length; p++) {
             try { selectedProps[p].expression = expressionCode; } catch(ee) {}
         }
@@ -128,12 +128,12 @@ function arkaGraphApplyExpression(expressionCode) {
     } catch(e) { return "ERROR: " + e.toString(); }
 }
 
-function arkaGraphClearExpression() {
+function wggraphClearExpression() {
     try {
         var comp = app.project.activeItem;
         if (!(comp instanceof CompItem)) return "ERROR: No active composition.";
         var selectedProps = getSelectedKeyframeProperties(comp);
-        app.beginUndoGroup("ArkaGraph: Clear Expression");
+        app.beginUndoGroup("WGGraph: Clear Expression");
         for (var p = 0; p < selectedProps.length; p++) {
             selectedProps[p].expression = "";
         }
@@ -142,7 +142,7 @@ function arkaGraphClearExpression() {
     } catch(e) { return "ERROR: " + e.toString(); }
 }
 
-function arkaGraphGetFPS() {
+function wggraphGetFPS() {
     try { return String(app.project.activeItem.frameRate); } catch(e) { return "24"; }
 }
 
@@ -166,12 +166,12 @@ function collectSelectedProps(group, result) {
     }
 }
 
-function arkaGraphClampBakeCount(value, minValue, maxValue) {
+function wggraphClampBakeCount(value, minValue, maxValue) {
     return Math.max(minValue, Math.min(maxValue, value));
 }
 
-function arkaGraphGetAdaptiveBakeCount(duration, frameRate, requestedSteps, segmentCount) {
-    var safeRequested = arkaGraphClampBakeCount(Math.round(requestedSteps || 30), 6, 120);
+function wggraphGetAdaptiveBakeCount(duration, frameRate, requestedSteps, segmentCount) {
+    var safeRequested = wggraphClampBakeCount(Math.round(requestedSteps || 30), 6, 120);
     var durationFrames = Math.max(2, Math.round(duration * frameRate) + 1);
     var hardCap = 48;
     var perPropertyBudget = 240;
@@ -179,7 +179,7 @@ function arkaGraphGetAdaptiveBakeCount(duration, frameRate, requestedSteps, segm
     return Math.max(2, Math.min(safeRequested, durationFrames, hardCap, segmentBudget));
 }
 
-function arkaGraphBakeKeys(samplesJSON, optionsJSON) {
+function wggraphBakeKeys(samplesJSON, optionsJSON) {
     try {
         var samples = JSON.parse(samplesJSON);
         var options = JSON.parse(optionsJSON) || {};
@@ -190,7 +190,7 @@ function arkaGraphBakeKeys(samplesJSON, optionsJSON) {
         if (!(comp instanceof CompItem)) return "ERROR: No active composition.";
         var selectedProps = getSelectedKeyframeProperties(comp);
         if (selectedProps.length === 0) return "ERROR: No properties selected.";
-        app.beginUndoGroup("ArkaGraph: Bake Keys");
+        app.beginUndoGroup("WGGraph: Bake Keys");
         var totalInsertedKeys = 0;
 
         for (var p = 0; p < selectedProps.length; p++) {
@@ -236,7 +236,7 @@ function arkaGraphBakeKeys(samplesJSON, optionsJSON) {
                 var startVal  = seg.startVal;
                 var endVal    = seg.endVal;
                 var duration  = endTime - startTime;
-                var segmentSteps = arkaGraphGetAdaptiveBakeCount(duration, comp.frameRate, options.requestedSteps, segments.length);
+                var segmentSteps = wggraphGetAdaptiveBakeCount(duration, comp.frameRate, options.requestedSteps, segments.length);
 
                 for (var i = 1; i < segmentSteps - 1; i++) {
                     var sampleIndex = Math.min(

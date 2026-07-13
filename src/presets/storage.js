@@ -2,8 +2,8 @@
     'use strict';
 
     const STORAGE_KEYS = {
-        userPresets: 'arkaGraph.userPresets.v1',
-        builtinFavorites: 'arkaGraph.builtinFavorites.v1'
+        userPresets: 'wggraph.userPresets.v1',
+        builtinFavorites: 'wggraph.builtinFavorites.v1'
     };
 
     function clone(value) {
@@ -25,7 +25,7 @@
         } catch (error) {}
     }
 
-    root.ArkaGraphPresetStorage = {
+    root.WGGraphPresetStorage = {
         loadUserPresets: function () {
             const stored = safeRead(STORAGE_KEYS.userPresets, []);
             return Array.isArray(stored) ? stored.map(clone) : [];

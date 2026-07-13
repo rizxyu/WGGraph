@@ -1,7 +1,7 @@
 (function (root) {
     'use strict';
 
-    const storage = root.ArkaGraphSettingsStorage;
+    const storage = root.WGGraphSettingsStorage;
 
     const THEMES = [
         {
@@ -204,7 +204,7 @@
     }
 
     function getDefaultBackgrounds() {
-        const links = Array.isArray(root.ArkaGraphBackgroundLinks) ? root.ArkaGraphBackgroundLinks : [];
+        const links = Array.isArray(root.WGGraphBackgroundLinks) ? root.WGGraphBackgroundLinks : [];
         return links.filter(function (item) {
             return item && typeof item.url === 'string' && item.url;
         }).map(function (item, index) {
@@ -388,7 +388,7 @@
         rootStyle.setProperty('--guide-line', 'rgba(245, 200, 66, 0.4)');
     }
 
-    root.ArkaGraphSettingsPanel = function createSettingsPanel(options) {
+    root.WGGraphSettingsPanel = function createSettingsPanel(options) {
         let settings = storage.merge(storage.defaults, options.initialSettings || {});
 
         function persistAndNotify() {

@@ -2,8 +2,8 @@
 
     'use strict';
 
-    const arkaGraphEngine = root.ArkaGraphEngine;
-    const clamp = arkaGraphEngine.clamp;
+    const wggraphEngine = root.WGGraphEngine;
+    const clamp = wggraphEngine.clamp;
 
     const Bounce = {
 
@@ -102,6 +102,6 @@
         }
     };
 
-    arkaGraphEngine.Bounce = arkaGraphEngine.register(Bounce.key, Bounce);
+    wggraphEngine.Bounce = wggraphEngine.register(Bounce.key, Bounce);
 
 })(window);

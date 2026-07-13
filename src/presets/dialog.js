@@ -1,7 +1,7 @@
 (function (root) {
     'use strict';
 
-    root.ArkaGraphPresetDialog = function createPresetDialog(elements) {
+    root.WGGraphPresetDialog = function createPresetDialog(elements) {
         let currentConfig = null;
         let currentMode = 'input';
 

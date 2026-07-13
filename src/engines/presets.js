@@ -2,9 +2,9 @@
 
     'use strict';
 
-    const arkaGraphEngine = root.ArkaGraphEngine;
+    const wggraphEngine = root.WGGraphEngine;
 
-    arkaGraphEngine.PRESETS = [
+    wggraphEngine.PRESETS = [
         { id: 'builtin-ease',      label: 'EASE',      engine: 'bezier',  params: { x1: 0.25, y1: 0.1,  x2: 0.25, y2: 1.0,  mode: 'value' } },
         { id: 'builtin-ease-in',   label: 'EASE IN',   engine: 'bezier',  params: { x1: 0.42, y1: 0.0,  x2: 1.0,  y2: 1.0,  mode: 'value' } },
         { id: 'builtin-ease-out',  label: 'EASE OUT',  engine: 'bezier',  params: { x1: 0.0,  y1: 0.0,  x2: 0.58, y2: 1.0,  mode: 'value' } },

@@ -32,7 +32,7 @@
     }
 
     function initSettingsFeatures() {
-        AG.settingsPanel = window.ArkaGraphSettingsPanel({
+        AG.settingsPanel = window.WGGraphSettingsPanel({
             initialSettings: AG.currentSettings,
             openButton: AG.dom.settingsButton,
             backdrop: AG.dom.settingsBackdrop,

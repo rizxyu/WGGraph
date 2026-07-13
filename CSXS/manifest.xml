@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="7.0" ExtensionBundleId="com.arkagraph.panel"
-    ExtensionBundleVersion="2.0.2"
-    ExtensionBundleName="ArkaGraph" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest Version="7.0" ExtensionBundleId="com.wggraph.panel"
+    ExtensionBundleVersion="2.0.5.0"
+    ExtensionBundleName="WGGraph" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ExtensionList>
-        <Extension Id="com.arkagraph.panel" Version="2.0.2" />
+        <Extension Id="com.wggraph.panel" Version="2.0.5.0" />
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
@@ -17,14 +17,15 @@
         </RequiredRuntimeList>
     </ExecutionEnvironment>
     <DispatchInfoList>
-        <Extension Id="com.arkagraph.panel">
+        <Extension Id="com.wggraph.panel">
             <DispatchInfo>
                 <Resources>
-                    <MainPath>./src/index.html</MainPath>
+                    <MainPath>./dist/index.html</MainPath>
                     <ScriptPath>./host/index.jsx</ScriptPath>
                     <CEFCommandLine>
                         <Parameter>--allow-file-access-from-files</Parameter>
                         <Parameter>--allow-running-insecure-content</Parameter>
+                        <Parameter>--enable-nodejs</Parameter>
                     </CEFCommandLine>
                 </Resources>
                 <Lifecycle>
@@ -32,7 +33,7 @@
                 </Lifecycle>
                 <UI>
                     <Type>Panel</Type>
-                    <Menu>ArkaGraph</Menu>
+                    <Menu>WGGraph</Menu>
                     <Geometry>
                         <Size>
                             <Width>360</Width>

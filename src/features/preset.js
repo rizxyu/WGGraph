@@ -13,7 +13,7 @@
     }
 
     function initPresetFeatures() {
-        AG.presetDialog = window.ArkaGraphPresetDialog({
+        AG.presetDialog = window.WGGraphPresetDialog({
             backdrop: AG.dom.dialogBackdrop,
             title: AG.dom.dialogTitle,
             description: AG.dom.dialogDescription,
@@ -28,8 +28,8 @@
             cancel: AG.dom.dialogCancel,
             confirm: AG.dom.dialogConfirm
         });
-        AG.presetManager = window.ArkaGraphPresetManager({
-            engine: window.ArkaGraphEngine,
+        AG.presetManager = window.WGGraphPresetManager({
+            engine: window.WGGraphEngine,
             dialog: AG.presetDialog,
             grid: AG.dom.presetGrid,
             saveButton: AG.dom.savePresetButton,

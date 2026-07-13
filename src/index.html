@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ArkaGraph 2.0</title>
+    <title>WGGraph 2.0</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet"/>
@@ -30,6 +30,11 @@
         <div class="canvas-tools">
             <button id="btn-sync">SYNC AE</button>
             <button id="btn-mirror-graph" class="icon-action-btn" type="button" title="Mirror graph" aria-label="Mirror graph"></button>
+            <button id="btn-update-plugin" class="icon-action-btn hidden" type="button" title="Update Available! Click to install." style="color: var(--yellow); border-color: var(--yellow);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                </svg>
+            </button>
             <button id="btn-open-settings" class="icon-action-btn" type="button" title="Settings" aria-label="Settings"></button>
             <span id="canvas-coords" class="coords-readout">T:0.000 V:0.000</span>
         </div>
@@ -194,6 +199,20 @@
         <div class="preset-toolbar">
             <span class="section-label" id="preset-engine-label">MODULE: BÉZIER</span>
             <button id="btn-save-preset" class="icon-action-btn" type="button" title="Save preset" aria-label="Save preset"></button>
+            <button id="btn-load-preset" class="icon-action-btn" type="button" title="Load presets (.json)" aria-label="Load preset">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+            </button>
+            <button id="btn-export-preset" class="icon-action-btn" type="button" title="Export presets (.json)" aria-label="Export presets">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+            </button>
         </div>
     </div>
     <div id="presets-grid"></div>
@@ -225,6 +244,61 @@
         <div class="dialog-actions">
             <button id="btn-cancel-preset-dialog" class="dialog-btn ghost" type="button">Cancel</button>
             <button id="btn-confirm-preset-dialog" class="dialog-btn accent" type="button">Save</button>
+        </div>
+    </div>
+</div>
+
+<div id="custom-import-dialog-backdrop" class="dialog-backdrop hidden">
+    <div id="custom-import-dialog" class="dialog-panel" role="dialog" aria-modal="true" aria-labelledby="custom-import-title">
+        <div class="dialog-header">
+            <div>
+                <div id="custom-import-title" class="dialog-title">Import Presets</div>
+                <div id="custom-import-description" class="dialog-description">Choose how you want to import the presets.</div>
+            </div>
+            <button id="btn-close-import-dialog" class="icon-action-btn dialog-close-btn" type="button" aria-label="Close dialog">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="dialog-message" id="custom-import-info" style="font-size: 9px; line-height: 1.4; color: var(--text1); margin-bottom: 12px;"></div>
+        <div class="dialog-actions">
+            <button id="btn-import-cancel" class="dialog-btn ghost" type="button">Cancel</button>
+            <button id="btn-import-overwrite" class="dialog-btn danger" type="button">Overwrite</button>
+            <button id="btn-import-merge" class="dialog-btn accent" type="button">Merge</button>
+        </div>
+    </div>
+</div>
+
+<div id="update-toast" class="update-toast">
+    <div class="toast-title">Update Tersedia!</div>
+    <div class="toast-body" id="update-toast-body">WGGraph v2.0.4 tersedia.</div>
+    <div class="toast-actions">
+        <button id="btn-toast-dismiss" class="toast-btn ghost" type="button">Nanti</button>
+        <button id="btn-toast-update" class="toast-btn accent" type="button">Update</button>
+    </div>
+</div>
+
+<div id="update-check-dialog-backdrop" class="dialog-backdrop hidden">
+    <div id="update-check-dialog" class="dialog-panel" role="dialog" aria-modal="true" aria-labelledby="update-check-title" style="width: 280px; max-height: 400px; display: flex; flex-direction: column;">
+        <div class="dialog-header">
+            <div>
+                <div id="update-check-title" class="dialog-title">Check Updates</div>
+                <div class="dialog-description">Release history from GitHub.</div>
+            </div>
+            <button id="btn-close-update-check" class="icon-action-btn dialog-close-btn" type="button" aria-label="Close dialog">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div id="update-check-content" style="flex: 1; overflow-y: auto; margin-bottom: 12px; font-family: inherit; font-size: 9px; line-height: 1.4; color: var(--text1); max-height: 260px; padding-right: 4px;">
+            <div style="text-align: center; padding: 20px; color: var(--text2);">Loading releases...</div>
+        </div>
+        <div class="dialog-actions" style="margin-top: auto; padding-top: 8px; border-top: 1px solid var(--border3);">
+            <button id="btn-update-check-close" class="dialog-btn ghost" type="button" style="width: 100%;">Close</button>
         </div>
     </div>
 </div>
@@ -331,6 +405,8 @@
 <script src="features/settings.js"></script>
 <script src="features/preset.js"></script>
 <script src="ui/events.js"></script>
+<script src="custom_presets.js"></script>
+<script src="updater.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
