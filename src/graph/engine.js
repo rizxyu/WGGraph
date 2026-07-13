@@ -21,7 +21,7 @@
     }
 
     function applyPresetState(preset) {
-        const defaults = AG.clone(window.ArkaGraphEngine.get(preset.engine).defaults);
+        const defaults = AG.clone(window.WGGraphEngine.get(preset.engine).defaults);
         const merged = Object.assign(defaults, AG.clone(preset.params || {}));
         if (preset.engine === 'bezier' && !merged.mode) merged.mode = 'value';
         AG.state.params[preset.engine] = merged;
@@ -31,7 +31,7 @@
     }
 
     function resetCurrentEngine() {
-        AG.state.params[AG.state.engine] = AG.clone(window.ArkaGraphEngine.get(AG.state.engine).defaults);
+        AG.state.params[AG.state.engine] = AG.clone(window.WGGraphEngine.get(AG.state.engine).defaults);
         if (AG.state.engine === 'bezier' && !AG.state.params.bezier.mode) AG.state.params.bezier.mode = 'value';
         AG.scaleY = 1.0;
         AG.syncCurrentInputs();

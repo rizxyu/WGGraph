@@ -2,11 +2,11 @@
     'use strict';
     window.AG = window.AG || {};
     window.AG.hostMethods = {
-        applyNativeEase: 'arkaGraphApplyNativeEase',
-        syncFromAE: 'arkaGraphSyncFromAE',
-        applyExpression: 'arkaGraphApplyExpression',
-        clearExpression: 'arkaGraphClearExpression',
-        getFPS: 'arkaGraphGetFPS',
-        bakeKeys: 'arkaGraphBakeKeys'
+        applyNativeEase: 'wggraphApplyNativeEase',
+        syncFromAE: 'wggraphSyncFromAE',
+        applyExpression: 'wggraphApplyExpression',
+        clearExpression: 'wggraphClearExpression',
+        getFPS: 'wggraphGetFPS',
+        bakeKeys: 'wggraphBakeKeys'
     };
 })();

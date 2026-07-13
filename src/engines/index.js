@@ -1,13 +1,13 @@
 (function (root) {
     'use strict';
 
-    const arkaGraphEngine = root.ArkaGraphEngine;
+    const wggraphEngine = root.WGGraphEngine;
 
-    arkaGraphEngine.get = function (key) {
+    wggraphEngine.get = function (key) {
         return this.registry[key] || null;
     };
 
-    arkaGraphEngine.createDefaultParams = function () {
+    wggraphEngine.createDefaultParams = function () {
         return {
             bezier: this.clone(this.Bezier.defaults),
             elastic: this.clone(this.Elastic.defaults),
@@ -18,7 +18,7 @@
         };
     };
 
-    arkaGraphEngine.sample = function (key, params, steps) {
+    wggraphEngine.sample = function (key, params, steps) {
         const definition = this.get(key);
         if (!definition || typeof definition.sample !== 'function') {
             return [];
@@ -26,7 +26,7 @@
         return definition.sample(steps, this.clone(params));
     };
 
-    arkaGraphEngine.expression = function (key, params) {
+    wggraphEngine.expression = function (key, params) {
         const definition = this.get(key);
         if (!definition || typeof definition.expression !== 'function') {
             return '';

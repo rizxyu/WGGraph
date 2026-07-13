@@ -3,7 +3,7 @@
     const AG = window.AG;
     AG.state = {
         engine: 'bezier',
-        params: window.ArkaGraphEngine.createDefaultParams(),
+        params: window.WGGraphEngine.createDefaultParams(),
         bakeSteps: 30,
         loop: { enabled: false, infinite: false, inCount: 0, outCount: 0 },
         dragging: null,
@@ -16,7 +16,7 @@
     AG.presetDialog = null;
     AG.presetManager = null;
     AG.settingsPanel = null;
-    AG.currentSettings = window.ArkaGraphSettingsStorage.load();
+    AG.currentSettings = window.WGGraphSettingsStorage.load();
     try {
         AG.csInterface = new CSInterface();
     } catch (e) {

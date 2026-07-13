@@ -1,6 +1,6 @@
 (function (root) {
     'use strict';
-    root.ArkaGraphBackgroundLinks = [
+    root.WGGraphBackgroundLinks = [
         {
             id: 'anime-madara-1',
             name: 'Madara',

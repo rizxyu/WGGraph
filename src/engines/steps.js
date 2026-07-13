@@ -2,8 +2,8 @@
 
     'use strict';
 
-    const arkaGraphEngine = root.ArkaGraphEngine;
-    const clamp = arkaGraphEngine.clamp;
+    const wggraphEngine = root.WGGraphEngine;
+    const clamp = wggraphEngine.clamp;
 
     const Steps = {
 
@@ -44,6 +44,6 @@
         }
     };
 
-    arkaGraphEngine.Steps = arkaGraphEngine.register(Steps.key, Steps);
+    wggraphEngine.Steps = wggraphEngine.register(Steps.key, Steps);
 
 })(window);

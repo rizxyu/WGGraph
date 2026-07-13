@@ -2,8 +2,8 @@
 
     'use strict';
 
-    const arkaGraphEngine = root.ArkaGraphEngine;
-    const TAU = arkaGraphEngine.TAU;
+    const wggraphEngine = root.WGGraphEngine;
+    const TAU = wggraphEngine.TAU;
 
     const Elastic = {
 
@@ -52,6 +52,6 @@
         }
     };
 
-    arkaGraphEngine.Elastic = arkaGraphEngine.register(Elastic.key, Elastic);
+    wggraphEngine.Elastic = wggraphEngine.register(Elastic.key, Elastic);
 
 })(window);

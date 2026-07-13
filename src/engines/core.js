@@ -2,28 +2,28 @@
 
     'use strict';
 
-    const arkaGraphEngine = root.ArkaGraphEngine || {};
+    const wggraphEngine = root.WGGraphEngine || {};
 
-    arkaGraphEngine.registry = arkaGraphEngine.registry || {};
-    arkaGraphEngine.TAU = Math.PI * 2;
+    wggraphEngine.registry = wggraphEngine.registry || {};
+    wggraphEngine.TAU = Math.PI * 2;
 
-    arkaGraphEngine.clamp = function (value, min, max) {
+    wggraphEngine.clamp = function (value, min, max) {
         return Math.max(min, Math.min(max, value));
     };
 
-    arkaGraphEngine.clone = function (value) {
+    wggraphEngine.clone = function (value) {
         if (value === undefined || value === null) {
             return value;
         }
         return JSON.parse(JSON.stringify(value));
     };
 
-    arkaGraphEngine.register = function (key, definition) {
+    wggraphEngine.register = function (key, definition) {
         this.registry[key] = definition;
         return definition;
     };
 
-    arkaGraphEngine.segmentSnippet = function () {
+    wggraphEngine.segmentSnippet = function () {
         return (
             "if(thisProperty.numKeys<2){value}else{\n" +
             "var seg=1;\n" +
@@ -35,6 +35,6 @@
         );
     };
 
-    root.ArkaGraphEngine = arkaGraphEngine;
+    root.WGGraphEngine = wggraphEngine;
 
 })(window);

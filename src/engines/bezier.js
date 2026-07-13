@@ -1,8 +1,8 @@
 (function (root) {
     'use strict';
 
-    const arkaGraphEngine = root.ArkaGraphEngine;
-    const clamp = arkaGraphEngine.clamp;
+    const wggraphEngine = root.WGGraphEngine;
+    const clamp = wggraphEngine.clamp;
 
     const Bezier = {
         key: 'bezier',
@@ -77,5 +77,5 @@
         }
     };
 
-    arkaGraphEngine.Bezier = arkaGraphEngine.register(Bezier.key, Bezier);
+    wggraphEngine.Bezier = wggraphEngine.register(Bezier.key, Bezier);
 })(window);

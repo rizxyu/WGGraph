@@ -1,8 +1,8 @@
 (function (root) {
     'use strict';
 
-    const STORAGE_KEY = 'arkaGraph.settings.v1';
-    const BACKGROUND_KEY = 'arkaGraph.settings.background.v1';
+    const STORAGE_KEY = 'wggraph.settings.v1';
+    const BACKGROUND_KEY = 'wggraph.settings.background.v1';
     let lastBackgroundPayload = null;
     const DEFAULTS = {
         features: {
@@ -115,7 +115,7 @@
         return lean;
     }
 
-    root.ArkaGraphSettingsStorage = {
+    root.WGGraphSettingsStorage = {
         defaults: clone(DEFAULTS),
         load: function () {
             try {

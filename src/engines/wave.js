@@ -2,8 +2,8 @@
 
     'use strict';
 
-    const arkaGraphEngine = root.ArkaGraphEngine;
-    const TAU = arkaGraphEngine.TAU;
+    const wggraphEngine = root.WGGraphEngine;
+    const TAU = wggraphEngine.TAU;
 
     const Wave = {
 
@@ -44,6 +44,6 @@
         }
     };
 
-    arkaGraphEngine.Wave = arkaGraphEngine.register(Wave.key, Wave);
+    wggraphEngine.Wave = wggraphEngine.register(Wave.key, Wave);
 
 })(window);

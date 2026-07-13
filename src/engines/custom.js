@@ -2,8 +2,8 @@
 
     'use strict';
 
-    const arkaGraphEngine = root.ArkaGraphEngine;
-    const clamp = arkaGraphEngine.clamp;
+    const wggraphEngine = root.WGGraphEngine;
+    const clamp = wggraphEngine.clamp;
 
     const Custom = {
 
@@ -112,6 +112,6 @@
         }
     };
 
-    arkaGraphEngine.Custom = arkaGraphEngine.register(Custom.key, Custom);
+    wggraphEngine.Custom = wggraphEngine.register(Custom.key, Custom);
 
 })(window);

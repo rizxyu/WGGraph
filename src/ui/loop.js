@@ -3,7 +3,7 @@
     const AG = window.AG;
 
     function clampLoopCount(value) {
-        return window.ArkaGraphLooping ? window.ArkaGraphLooping.clampCount(value) : 0;
+        return window.WGGraphLooping ? window.WGGraphLooping.clampCount(value) : 0;
     }
 
     function isLoopActive() {
