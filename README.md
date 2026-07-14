@@ -2,7 +2,7 @@
 
 ![WGGraph Cover](assets/cover.png)
 
-**WGGraph** is an advanced, professional-grade keyframe interpolation and motion architecture panel for Adobe After Effects. It streamlines complex animation workflows by providing a visual, intuitive interface for curve manipulation, preset management, and keyframe easing engines.
+**WGGraph** xxx is a plugin that is forked from the arkagraph repository, with an effort to update a lot of new content in it. **WGGraph** is professional-grade keyframe interpolation and motion architecture panel for Adobe After Effects. It streamlines complex animation workflows by providing a visual, intuitive interface for curve manipulation, preset management, and keyframe easing engines.
 
 ---
 
@@ -15,7 +15,6 @@ Multiple interpolation systems to control the dynamics of your keyframes:
 * **Bounce:** Physics-based bouncing simulation with configurable gravity and rebound.
 * **Steps / Wave / Custom:** Specialized curves for stepped animations and wave patterns.
 
-![Bézier interpolation editor](assets/feature_bezier.png)
 
 ### 2. Custom Preset Manager & Library
 A robust, persistent catalog of your custom curves:
@@ -23,7 +22,6 @@ A robust, persistent catalog of your custom curves:
 * **Delete & Search:** Instantly locate and organize your presets.
 * **Instant Application:** Double-click or click to inject easing curves directly onto your selected After Effects layers.
 
-![Presets library](assets/feature_presets.png)
 
 ### 3. Integrated Native Auto-Updater
 An automated, silent updater that works 100% inside the panel:
