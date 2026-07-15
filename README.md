@@ -1,8 +1,6 @@
 # WGGraph
 
-![WGGraph Cover](assets/cover.png)
-
-**WGGraph** xxx is a plugin that is forked from the arkagraph repository, with an effort to update a lot of new content in it. **WGGraph** is professional-grade keyframe interpolation and motion architecture panel for Adobe After Effects. It streamlines complex animation workflows by providing a visual, intuitive interface for curve manipulation, preset management, and keyframe easing engines.
+**WGGraph** is a plugin that is forked from the ![Arkagraph](https://github.com/arkaadiana) repository, with an effort to update a lot of new content in it. **WGGraph** is professional-grade keyframe interpolation and motion architecture panel for Adobe After Effects. It streamlines complex animation workflows by providing a visual, intuitive interface for curve manipulation, preset management, and keyframe easing engines.
 
 ---
 
